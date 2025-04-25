@@ -53,23 +53,23 @@ final class WelcomeViewController: UIViewController {
     }
     
     private func activateConstraints() {
-        tvingImageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(tvingImageView.snp.width).multipliedBy(210.94 / 375)
+        tvingImageView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(tvingImageView.snp.width).multipliedBy(210.94 / 375)
         }
 
-        welcomeLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview()
+        welcomeLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
 
-        backToMainButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
-            make.width.equalTo(335)
-            make.height.equalTo(52)
-            make.centerX.equalToSuperview()
+        backToMainButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.width.equalTo(335)
+            $0.height.equalTo(52)
+            $0.centerX.equalToSuperview()
         }
     }
     

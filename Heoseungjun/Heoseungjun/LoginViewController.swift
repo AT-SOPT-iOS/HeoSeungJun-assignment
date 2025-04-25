@@ -257,55 +257,55 @@ final class LoginViewController: UIViewController {
     }
     
     private func activateConstraints() {
-        mainLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
-            make.centerX.equalToSuperview()
+        mainLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
+            $0.centerX.equalToSuperview()
         }
 
-        idTextField.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom).offset(40)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(52)
+        idTextField.snp.makeConstraints {
+            $0.top.equalTo(mainLabel.snp.bottom).offset(40)
+            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.height.equalTo(52)
         }
 
-        idClearButton.snp.makeConstraints { make in
-            make.centerY.equalTo(idTextField)
-            make.trailing.equalTo(idTextField.snp.trailing).offset(-12)
-            make.width.height.equalTo(20)
+        idClearButton.snp.makeConstraints {
+            $0.centerY.equalTo(idTextField)
+            $0.trailing.equalTo(idTextField.snp.trailing).offset(-12)
+            $0.width.height.equalTo(20)
         }
 
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(idTextField.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(52)
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(idTextField.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.height.equalTo(52)
         }
 
-        passwordSecureButton.snp.makeConstraints { make in
-            make.centerY.equalTo(passwordTextField)
-            make.trailing.equalTo(passwordTextField.snp.trailing).offset(-44)
-            make.width.height.equalTo(20)
+        passwordSecureButton.snp.makeConstraints {
+            $0.centerY.equalTo(passwordTextField)
+            $0.trailing.equalTo(passwordTextField.snp.trailing).offset(-44)
+            $0.width.height.equalTo(20)
         }
 
-        passwordClearButton.snp.makeConstraints { make in
-            make.centerY.equalTo(passwordTextField)
-            make.trailing.equalTo(passwordTextField.snp.trailing).offset(-12)
-            make.width.height.equalTo(20)
+        passwordClearButton.snp.makeConstraints {
+            $0.centerY.equalTo(passwordTextField)
+            $0.trailing.equalTo(passwordTextField.snp.trailing).offset(-12)
+            $0.width.height.equalTo(20)
         }
 
-        loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(52)
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(30)
+            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.height.equalTo(52)
         }
 
-        foundStackView.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
+        foundStackView.snp.makeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
         }
 
-        accountStackView.snp.makeConstraints { make in
-            make.top.equalTo(foundStackView.snp.bottom).offset(40)
-            make.centerX.equalToSuperview()
+        accountStackView.snp.makeConstraints {
+            $0.top.equalTo(foundStackView.snp.bottom).offset(40)
+            $0.centerX.equalToSuperview()
         }
     }
 }

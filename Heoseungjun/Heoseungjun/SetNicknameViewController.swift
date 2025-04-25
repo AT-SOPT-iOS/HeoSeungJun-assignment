@@ -89,24 +89,24 @@ final class SetNicknameViewController: UIViewController {
     }
     
     private func activateConstraints() {
-        enterNicknameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().inset(30) // trailing은 offset이 아니라 inset!
+        enterNicknameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(50)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().inset(30) // trailing은 offset이 아니라 inset!
         }
 
-        nicknameTextField.snp.makeConstraints { make in
-            make.top.equalTo(enterNicknameLabel.snp.bottom).offset(10)
-            make.width.equalTo(335)
-            make.height.equalTo(52)
-            make.centerX.equalToSuperview()
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalTo(enterNicknameLabel.snp.bottom).offset(10)
+            $0.width.equalTo(335)
+            $0.height.equalTo(52)
+            $0.centerX.equalToSuperview()
         }
 
-        saveButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(30)
-            make.width.equalTo(335)
-            make.height.equalTo(63.13)
-            make.centerX.equalToSuperview()
+        saveButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(30)
+            $0.width.equalTo(335)
+            $0.height.equalTo(63.13)
+            $0.centerX.equalToSuperview()
         }
     }
 }
