@@ -11,6 +11,7 @@ final class BaseballTeamsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addView()
         setLayout()
     }
     
@@ -18,9 +19,11 @@ final class BaseballTeamsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setLayout() {
+    private func addView() {
         addSubview(teamImageView)
-        
+    }
+    
+    private func setLayout() {
         teamImageView.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.width.equalTo(80)
@@ -29,8 +32,11 @@ final class BaseballTeamsCell: UICollectionViewCell {
     }
     
     func dataBind(_ data: BaseballTeams, row: Int) {
-        teamImageView.image = data.image?.scaleImage(toSize: CGSize(width: 25, height: 25))
-        
+        teamImageView.image = data.image
+        setBackgroundColor(row: row)
+    }
+    
+    private func setBackgroundColor(row: Int) {
         if row % 2 == 0 {
             teamImageView.backgroundColor = .white
             return

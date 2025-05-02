@@ -12,6 +12,7 @@ class MainPiecesCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addView()
         setLayout()
     }
     
@@ -19,11 +20,15 @@ class MainPiecesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func addView() {
+        addSubview(mainPiecesImageView)
+    }
+    
     private func setLayout() {
-        contentView.addSubview(mainPiecesImageView)
-        
         mainPiecesImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.width.equalTo(400)
+            $0.height.equalTo(577)
         }
     }
     

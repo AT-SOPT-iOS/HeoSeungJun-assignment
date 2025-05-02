@@ -48,6 +48,7 @@ final class RealTimeLivesCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addViews()
         setLayout()
     }
     
@@ -55,10 +56,12 @@ final class RealTimeLivesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setLayout() {
+    private func addViews() {
         addSubViews(pieceImageView, rankLabel, pieceInformationStackView)
         pieceInformationStackView.addArrangedSubViews(companyLabel, nameLabel, viewerRatingLabel)
-        
+    }
+    
+    private func setLayout() {
         pieceImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(10)
             $0.width.equalTo(160)
