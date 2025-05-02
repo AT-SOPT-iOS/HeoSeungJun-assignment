@@ -1,32 +1,25 @@
 import UIKit
 import SnapKit
 
-final class RealTimeLivesView: UIView {
+final class MasterpiecesView: UIView {
     
-    private let realTimeLivesManager = RealTimeLivesManager()
+    private let masterpiecesManager = MasterpiecesManager()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "실시간 인기 LIVE"
+        label.text = "나의 인생작 TOP 5"
         label.textColor = .white
         label.font = UIFont(name: "Pretendard-Bold", size: 17)
         label.textAlignment = .left
         return label
     }()
     
-    private let viewMoreButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("더보기", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.backgroundColor = .clear
-        return button
-    }()
-    
-    private let liveCollectionView: UICollectionView = {
+    private let masterpieceCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .black
+        collectionView.isPagingEnabled = true
         return collectionView
     }()
     
@@ -43,67 +36,54 @@ final class RealTimeLivesView: UIView {
     }
     
     private func setLayout() {
-        addSubViews(titleLabel, viewMoreButton, liveCollectionView)
+        addSubViews(titleLabel, masterpieceCollectionView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
             $0.leading.equalToSuperview().offset(13)
-            $0.width.equalTo(120)
+            $0.width.equalTo(130)
             $0.height.equalTo(23)
         }
         
-        viewMoreButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(30)
-            $0.leading.equalTo(titleLabel.snp.trailing).offset(150)
-            $0.trailing.equalToSuperview()
-            $0.width.equalTo(105)
-            $0.height.equalTo(23)
-        }
-        
-        liveCollectionView.snp.makeConstraints {
+        masterpieceCollectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(166)
+            $0.width.equalTo(160)
+            $0.height.equalTo(90)
         }
     }
     
     private func setDelegate() {
-        liveCollectionView.dataSource = self
-        liveCollectionView.delegate = self
+        masterpieceCollectionView.dataSource = self
+        masterpieceCollectionView.delegate = self
     }
     
     private func setData() {
-        realTimeLivesManager.makeRealTimeLivesData()
+        masterpiecesManager.makeMasterpiecesData()
     }
     
     private func register() {
-        liveCollectionView.register(RealTimeLivesCell.self, forCellWithReuseIdentifier: RealTimeLivesCell.identifier)
+        masterpieceCollectionView.register(MasterpiecesCell.self, forCellWithReuseIdentifier: MasterpiecesCell.identifier)
     }
 }
 
-extension RealTimeLivesView: UICollectionViewDelegateFlowLayout {
+extension MasterpiecesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: collectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return CGSize(width: 160, height: collectionView.frame.height)
     }
 }
 
-extension RealTimeLivesView: UICollectionViewDataSource {
+extension MasterpiecesView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return realTimeLivesManager.getRealTimeLivesData().count
+        return masterpiecesManager.getMasterpicesData().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RealTimeLivesCell.identifier, for: indexPath)
-                as? RealTimeLivesCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MasterpiecesCell.identifier, for: indexPath)
+                as? MasterpiecesCell else {
             return UICollectionViewCell()
         }
-        let row = indexPath.row
-        cell.dataBind(realTimeLivesManager.getRealTimeLivesData()[row], row: row)
+        cell.dataBind(masterpiecesManager.getMasterpicesData()[indexPath.row])
         return cell
     }
 }
