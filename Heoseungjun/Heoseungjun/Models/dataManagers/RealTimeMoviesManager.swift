@@ -1,15 +1,19 @@
 import UIKit
 
-class RealTimeFavoriteMoviesManager {
-    var topPiecesData: [TopPieces] = []
+class RealTimeMoviesManager {
+    var realTimeMoviesData: [RealTimeMovies] = []
     
-    func makeTopPiecesData() {
-        topPiecesData = [
-            TopPieces(image: UIImage(named: "시그널"), rank: 1),
-            TopPieces(image: UIImage(named: "해리포터"), rank: 2),
-            TopPieces(image: UIImage(named: "반지의제왕"), rank: 3),
-            TopPieces(image: UIImage(named: "스즈메의문단속"), rank: 4),
-            TopPieces(image: UIImage(named: "너의이름은"), rank: 5)
+    func makeRealTimeMoviesData() {
+        realTimeMoviesData = [
+            RealTimeMovies(image: UIImage(named: "시그널")),
+            RealTimeMovies(image: UIImage(named: "해리포터")),
+            RealTimeMovies(image: UIImage(named: "반지의제왕")),
+            RealTimeMovies(image: UIImage(named: "스즈메의문단속")),
+            RealTimeMovies(image: UIImage(named: "너의이름은"))
         ]
+    }
+    
+    func getRealTimeMoviesData() -> [RealTimeMovies] {
+        return realTimeMoviesData
     }
 }

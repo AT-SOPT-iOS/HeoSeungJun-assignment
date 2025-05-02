@@ -1,22 +1,25 @@
 import UIKit
 
-class MainPiecesManager {
-    var mainPiecesData: [MainPieces] = []
+class BaseballTeamsManager {
+    var baseballTeamsData: [BaseballTeams] = []
     
-    func makeMainPiecesData() {
-        mainPiecesData = [
-            MainPieces(image: UIImage(named: "너의이름은")),
-            MainPieces(image: UIImage(named: "콩심은데콩나고밥먹으면밥심난다")),
-            MainPieces(image: UIImage(named: "냉장고를부탁해")),
-            MainPieces(image: UIImage(named: "하트시그널4")),
-            MainPieces(image: UIImage(named: "최강야구")),
-            MainPieces(image: UIImage(named: "너에게닿기를2")),
-            MainPieces(image: UIImage(named: "슬기로운전공의생활1"))
+    func makeBaseballTeamsData() {
+        baseballTeamsData = [
+            BaseballTeams(image: UIImage(named: "베어스")),
+            BaseballTeams(image: UIImage(named: "타이거즈")),
+            BaseballTeams(image: UIImage(named: "라이온즈")),
+            BaseballTeams(image: UIImage(named: "랜더스")),
+            BaseballTeams(image: UIImage(named: "트윈스")),
+            BaseballTeams(image: UIImage(named: "자이언츠")),
+            BaseballTeams(image: UIImage(named: "이글스")),
+            BaseballTeams(image: UIImage(named: "히어로즈")),
+            BaseballTeams(image: UIImage(named: "위즈")),
+            BaseballTeams(image: UIImage(named: "다이노스"))
         ]
     }
     
-    func getMainPiecesData() -> [MainPieces] {
-        return mainPiecesData
+    func getBaseballTeamsData() -> [BaseballTeams] {
+        return baseballTeamsData
     }
 }
 
