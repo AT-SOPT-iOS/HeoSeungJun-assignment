@@ -1,6 +1,5 @@
 import UIKit
 
-struct TopPieces {
+struct RealTimeMovies {
     var image: UIImage?
-    var rank: Int
 }

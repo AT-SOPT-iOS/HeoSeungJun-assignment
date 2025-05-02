@@ -1,8 +1,8 @@
 import UIKit
 
-struct RealTimeFavoriteLives {
+struct RealTimeLives {
     var image: UIImage?
     var company: String
-    var episode: String
+    var name: String
     var viewerRating: Double
 }
