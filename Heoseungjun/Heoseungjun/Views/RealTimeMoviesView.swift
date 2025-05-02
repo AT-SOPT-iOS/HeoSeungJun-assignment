@@ -1,13 +1,13 @@
 import UIKit
 import SnapKit
 
-final class RealTimeLivesView: UIView {
+final class RealTimeMoviesView: UIView {
     
-    private let realTimeLivesManager = RealTimeLivesManager()
+    private let realTimeMoviesManager = RealTimeMoviesManager()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "실시간 인기 LIVE"
+        label.text = "실시간 인기 영화"
         label.textColor = .white
         label.font = UIFont(name: "Pretendard-Bold", size: 17)
         label.textAlignment = .left
@@ -22,7 +22,7 @@ final class RealTimeLivesView: UIView {
         return button
     }()
     
-    private let liveCollectionView: UICollectionView = {
+    private let movieCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,7 +43,7 @@ final class RealTimeLivesView: UIView {
     }
     
     private func setLayout() {
-        addSubViews(titleLabel, viewMoreButton, liveCollectionView)
+        addSubViews(titleLabel, viewMoreButton, movieCollectionView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -60,50 +60,45 @@ final class RealTimeLivesView: UIView {
             $0.height.equalTo(23)
         }
         
-        liveCollectionView.snp.makeConstraints {
+        movieCollectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(166)
+            $0.height.equalTo(200)
         }
     }
     
     private func setDelegate() {
-        liveCollectionView.dataSource = self
-        liveCollectionView.delegate = self
+        movieCollectionView.dataSource = self
+        movieCollectionView.delegate = self
     }
     
     private func setData() {
-        realTimeLivesManager.makeRealTimeLivesData()
+        realTimeMoviesManager.makeRealTimeMoviesData()
     }
     
     private func register() {
-        liveCollectionView.register(RealTimeLivesCell.self, forCellWithReuseIdentifier: RealTimeLivesCell.identifier)
+        movieCollectionView.register(RealTimeMoviesCell.self, forCellWithReuseIdentifier: RealTimeMoviesCell.identifier)
     }
 }
 
-extension RealTimeLivesView: UICollectionViewDelegateFlowLayout {
+extension RealTimeMoviesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: collectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return CGSize(width: 98, height: collectionView.frame.height)
     }
 }
 
-extension RealTimeLivesView: UICollectionViewDataSource {
+extension RealTimeMoviesView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return realTimeLivesManager.getRealTimeLivesData().count
+        return realTimeMoviesManager.getRealTimeMoviesData().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RealTimeLivesCell.identifier, for: indexPath)
-                as? RealTimeLivesCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RealTimeMoviesCell.identifier, for: indexPath)
+                as? RealTimeMoviesCell else {
             return UICollectionViewCell()
         }
-        let row = indexPath.row
-        cell.dataBind(realTimeLivesManager.getRealTimeLivesData()[row], row: row)
+        cell.dataBind(realTimeMoviesManager.getRealTimeMoviesData()[indexPath.row])
         return cell
     }
 }

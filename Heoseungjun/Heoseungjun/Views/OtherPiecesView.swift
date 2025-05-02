@@ -1,11 +1,11 @@
 import UIKit
 import SnapKit
 
-final class BaseballTeamsView: UIView {
+final class OtherPiecesView: UIView {
     
-    private let baseballTeamsManager = BaseballTeamsManager()
+    private let otherPiecesManager = OtherPiecesManager()
     
-    private let baseballCollectionView: UICollectionView = {
+    private let otherPiecesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -26,48 +26,47 @@ final class BaseballTeamsView: UIView {
     }
     
     private func setLayout() {
-        addSubViews(baseballCollectionView)
+        addSubViews(otherPiecesCollectionView)
         
-        baseballCollectionView.snp.makeConstraints {
+        otherPiecesCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
-            $0.leading.trailing.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(safeAreaLayoutGuide).offset(15)
             $0.width.equalToSuperview()
-            $0.height.equalTo(50)
+            $0.height.equalTo(55)
         }
     }
     
     private func setDelegate() {
-        baseballCollectionView.dataSource = self
-        baseballCollectionView.delegate = self
+        otherPiecesCollectionView.dataSource = self
+        otherPiecesCollectionView.delegate = self
     }
     
     private func setData() {
-        baseballTeamsManager.makeBaseballTeamsData()
+        otherPiecesManager.makeOtherPiecesData()
     }
     
     private func register() {
-        baseballCollectionView.register(BaseballTeamsCell.self, forCellWithReuseIdentifier: BaseballTeamsCell.identifier)
+        otherPiecesCollectionView.register(OtherPiecesCell.self, forCellWithReuseIdentifier: OtherPiecesCell.identifier)
     }
 }
 
-extension BaseballTeamsView: UICollectionViewDelegateFlowLayout {
+extension OtherPiecesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: collectionView.frame.height)
+        return CGSize(width: 110, height: collectionView.frame.height)
     }
 }
 
-extension BaseballTeamsView: UICollectionViewDataSource {
+extension OtherPiecesView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return baseballTeamsManager.getBaseballTeamsData().count
+        return otherPiecesManager.getOhterPiecesData().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseballTeamsCell.identifier, for: indexPath)
-                as? BaseballTeamsCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OtherPiecesCell.identifier, for: indexPath)
+                as? OtherPiecesCell else {
             return UICollectionViewCell()
         }
-        let row = indexPath.row
-        cell.dataBind(baseballTeamsManager.getBaseballTeamsData()[row], row: row)
+        cell.dataBind(otherPiecesManager.getOhterPiecesData()[indexPath.row])
         return cell
     }
 }
