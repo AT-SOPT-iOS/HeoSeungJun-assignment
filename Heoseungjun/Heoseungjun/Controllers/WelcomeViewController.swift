@@ -21,18 +21,19 @@ final class WelcomeViewController: UIViewController {
         return label
     }()
     
-    let backToMainButton: UIButton = {
+    let goToMainButton: UIButton = {
         let button = UIButton()
         button.setTitle("메인으로", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .red
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(backToMainButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToMainButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    @objc func backToMainButtonTapped() {
-        self.navigationController?.popViewController(animated: true)
+    @objc func goToMainButtonTapped() {
+        let mainVC = MainViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
     }
 
     override func viewDidLoad() {
@@ -49,7 +50,7 @@ final class WelcomeViewController: UIViewController {
         view.backgroundColor = .black
         view.addSubview(tvingImageView)
         view.addSubview(welcomeLabel)
-        view.addSubview(backToMainButton)
+        view.addSubview(goToMainButton)
     }
     
     private func activateConstraints() {
@@ -65,7 +66,7 @@ final class WelcomeViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
 
-        backToMainButton.snp.makeConstraints {
+        goToMainButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
             $0.width.equalTo(335)
             $0.height.equalTo(52)
