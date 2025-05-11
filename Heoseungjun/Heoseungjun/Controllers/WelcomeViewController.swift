@@ -17,7 +17,7 @@ final class WelcomeViewController: UIViewController {
         label.numberOfLines = 3
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 23)
+        label.font = UIFont.customBold(ofSize: 23)
         return label
     }()
     
@@ -31,9 +31,24 @@ final class WelcomeViewController: UIViewController {
         return button
     }()
     
+    let goToBoxofficeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("일별 박스오피스", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(goToBoxofficeButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     @objc func goToMainButtonTapped() {
-        let mainVC = MainViewController()
-        self.navigationController?.pushViewController(mainVC, animated: true)
+        let homeVC = HomeViewController()
+        self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+    
+    @objc func goToBoxofficeButtonTapped() {
+        let boxofficeVC = BoxofficeViewController()
+        self.navigationController?.pushViewController(boxofficeVC, animated: true)
     }
 
     override func viewDidLoad() {
@@ -48,9 +63,7 @@ final class WelcomeViewController: UIViewController {
     
     private func addSubViews() {
         view.backgroundColor = .black
-        view.addSubview(tvingImageView)
-        view.addSubview(welcomeLabel)
-        view.addSubview(goToMainButton)
+        view.addSubviews(tvingImageView, welcomeLabel, goToBoxofficeButton, goToMainButton)
     }
     
     private func activateConstraints() {
@@ -63,6 +76,13 @@ final class WelcomeViewController: UIViewController {
 
         welcomeLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        
+        goToBoxofficeButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(92)
+            $0.width.equalTo(335)
+            $0.height.equalTo(52)
             $0.centerX.equalToSuperview()
         }
 

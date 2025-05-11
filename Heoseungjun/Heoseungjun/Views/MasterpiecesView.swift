@@ -5,38 +5,40 @@ final class MasterpiecesView: UIView {
     
     private let masterpiecesManager = MasterpiecesManager()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "나의 인생작 TOP 5"
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 17)
-        label.textAlignment = .left
-        return label
-    }()
+    private let titleLabel = UILabel()
     
-    private let masterpieceCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        collectionView.isPagingEnabled = true
-        return collectionView
-    }()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var masterpieceCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setStyle() {
+        titleLabel.do {
+            $0.text = "나의 인생작 TOP 5"
+            $0.textColor = .white
+            $0.font = UIFont.customBold(ofSize: 17)
+            $0.textAlignment = .left
+        }
+        
+        flowLayout.scrollDirection = .horizontal
+        masterpieceCollectionView.do {
+            $0.backgroundColor = .black
+            $0.isPagingEnabled = true
+        }
+    }
+    
     private func setLayout() {
-        addSubViews(titleLabel, masterpieceCollectionView)
+        addSubviews(titleLabel, masterpieceCollectionView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -54,16 +56,15 @@ final class MasterpiecesView: UIView {
     }
     
     private func setDelegate() {
-        masterpieceCollectionView.dataSource = self
-        masterpieceCollectionView.delegate = self
+        masterpieceCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(MasterpiecesCell.self, forCellWithReuseIdentifier: MasterpiecesCell.identifier)
+        }
     }
     
     private func setData() {
         masterpiecesManager.makeMasterpiecesData()
-    }
-    
-    private func register() {
-        masterpieceCollectionView.register(MasterpiecesCell.self, forCellWithReuseIdentifier: MasterpiecesCell.identifier)
     }
 }
 
