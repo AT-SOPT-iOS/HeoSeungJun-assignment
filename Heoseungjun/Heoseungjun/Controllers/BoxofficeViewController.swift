@@ -23,6 +23,7 @@ class BoxofficeViewController: UIViewController {
     
     private func setStyle() {
         view.backgroundColor = .black
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     private func getTargetDate() -> String {
