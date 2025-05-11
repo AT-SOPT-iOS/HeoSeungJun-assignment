@@ -4,37 +4,36 @@ final class TopPiecesView: UIView {
     
     private let topPiecesManager = TopPiecesManager()
     
-    private let topTwentyLabel: UILabel = {
-        let label = UILabel()
-        label.text = "오늘의 티빙 TOP 20"
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 17)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private let topPiecesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        return collectionView
-    }()
+    private let topTwentyLabel = UILabel()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var topPiecesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setStyle() {
+        topTwentyLabel.do {
+            $0.text = "오늘의 티빙 TOP 20"
+            $0.textColor = .white
+            $0.font = UIFont.customBold(ofSize: 17)
+            $0.textAlignment = .left
+        }
+        
+        flowLayout.scrollDirection = .horizontal
+        topPiecesCollectionView.backgroundColor = .black
+    }
+    
     private func setLayout() {
-        addSubViews(topTwentyLabel, topPiecesCollectionView)
+        addSubviews(topTwentyLabel, topPiecesCollectionView)
         
         topTwentyLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
@@ -50,16 +49,15 @@ final class TopPiecesView: UIView {
     }
     
     private func setDelegate() {
-        topPiecesCollectionView.dataSource = self
-        topPiecesCollectionView.delegate = self
+        topPiecesCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(TopPiecesCell.self, forCellWithReuseIdentifier: TopPiecesCell.identifier)
+        }
     }
     
     private func setData() {
         topPiecesManager.makeTopPiecesData()
-    }
-    
-    private func register() {
-        topPiecesCollectionView.register(TopPiecesCell.self, forCellWithReuseIdentifier: TopPiecesCell.identifier)
     }
 }
 

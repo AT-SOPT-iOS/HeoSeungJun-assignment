@@ -3,16 +3,12 @@ import SnapKit
 
 final class OtherPiecesCell: UICollectionViewCell {
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1)
-        imageView.layer.cornerRadius = 4
-        return imageView
-    }()
+    private let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addView()
+        setStyle()
         setLayout()
     }
     
@@ -22,6 +18,13 @@ final class OtherPiecesCell: UICollectionViewCell {
     
     private func addView() {
         addSubview(imageView)
+    }
+    
+    private func setStyle() {
+        imageView.do {
+            $0.backgroundColor = UIColor.gray1
+            $0.layer.cornerRadius = 4
+        }
     }
     
     private func setLayout() {

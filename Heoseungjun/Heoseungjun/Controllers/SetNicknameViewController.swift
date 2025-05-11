@@ -6,22 +6,20 @@ protocol NicknameDelegate: AnyObject {
 }
 
 final class SetNicknameViewController: UIViewController {
-    
-    // ❤️ 텍스트필드 입력은 한글로 제한
-    
+        
     weak var delegate: NicknameDelegate?
     
     private let enterNicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임을 입력해주세요"
         label.textColor = .black
-        label.font = UIFont(name: "Prentendard-Black", size: 23)
+        label.font = UIFont.customRegular(ofSize: 23)
         return label
     }()
     
     private let nicknameTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)
+        textField.backgroundColor = UIColor.gray5
         textField.textColor = .black
         textField.layer.cornerRadius = 3
         textField.autocapitalizationType = .none
@@ -78,14 +76,8 @@ final class SetNicknameViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .white
-        addSubViews()
+        view.addSubviews(enterNicknameLabel, nicknameTextField, saveButton)
         activateConstraints()
-    }
-    
-    private func addSubViews() {
-        view.addSubview(enterNicknameLabel)
-        view.addSubview(nicknameTextField)
-        view.addSubview(saveButton)
     }
     
     private func activateConstraints() {
@@ -108,13 +100,5 @@ final class SetNicknameViewController: UIViewController {
             $0.height.equalTo(63.13)
             $0.centerX.equalToSuperview()
         }
-    }
-}
-
-extension String {
-    var isValidNickname: Bool {
-        let regularExpression = "^[가-힣]+$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
-        return predicate.evaluate(with: self)
     }
 }

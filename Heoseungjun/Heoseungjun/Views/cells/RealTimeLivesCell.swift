@@ -1,54 +1,20 @@
 import UIKit
 import SnapKit
+import Then
 
 final class RealTimeLivesCell: UICollectionViewCell {
     
-    private let pieceImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 3
-        return imageView
-    }()
-    
-    private let rankLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 19)
-        return label
-    }()
-    
-    private let companyLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 10)
-        return label
-    }()
-    
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Thin", size: 10)
-        return label
-    }()
-    
-    private let viewerRatingLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Thin", size: 10)
-        return label
-    }()
-    
-    private let pieceInformationStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 1
-        stackView.alignment = .leading
-        return stackView
-    }()
+    private let pieceImageView = UIImageView()
+    private let rankLabel = UILabel()
+    private let companyLabel = UILabel()
+    private let nameLabel = UILabel()
+    private let viewerRatingLabel = UILabel()
+    private let pieceInformationStackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addViews()
+        setStyle()
         setLayout()
     }
     
@@ -57,8 +23,41 @@ final class RealTimeLivesCell: UICollectionViewCell {
     }
     
     private func addViews() {
-        addSubViews(pieceImageView, rankLabel, pieceInformationStackView)
-        pieceInformationStackView.addArrangedSubViews(companyLabel, nameLabel, viewerRatingLabel)
+        addSubviews(pieceImageView, rankLabel, pieceInformationStackView)
+        pieceInformationStackView.addArrangedSubviews(companyLabel, nameLabel, viewerRatingLabel)
+    }
+    
+    private func setStyle() {
+        pieceImageView.do {
+            $0.contentMode = .scaleAspectFit
+            $0.layer.cornerRadius = 3
+        }
+        
+        rankLabel.do {
+            $0.textColor = .white
+            $0.font = UIFont.customBold(ofSize: 19)
+        }
+        
+        companyLabel.do {
+            $0.textColor = .white
+            $0.font = UIFont.customBold(ofSize: 10)
+        }
+        
+        nameLabel.do {
+            $0.textColor = .white
+            $0.font = UIFont.customThin(ofSize: 10)
+        }
+        
+        viewerRatingLabel.do {
+            $0.textColor = .white
+            $0.font = UIFont.customThin(ofSize: 10)
+        }
+        
+        pieceInformationStackView.do {
+            $0.axis = .vertical
+            $0.spacing = 1
+            $0.alignment = .leading
+        }
     }
     
     private func setLayout() {

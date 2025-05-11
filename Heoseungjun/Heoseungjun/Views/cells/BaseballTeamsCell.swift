@@ -3,20 +3,21 @@ import SnapKit
 
 final class BaseballTeamsCell: UICollectionViewCell {
     
-    private let teamImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let teamImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addView()
+        setStyle()
         setLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setStyle() {
+        teamImageView.contentMode = .scaleAspectFit
     }
     
     private func addView() {

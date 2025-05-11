@@ -4,25 +4,27 @@ final class MainPiecesView: UIView {
     
     private let mainPiecesManager = MainPiecesManager()
         
-    private let mainPiecesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        collectionView.isPagingEnabled = true
-        return collectionView
-    }()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var mainPiecesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setStyle() {
+        flowLayout.scrollDirection = .horizontal
+        mainPiecesCollectionView.do {
+            $0.backgroundColor = .clear
+            $0.isPagingEnabled = true
+        }
     }
     
     private func setLayout() {
@@ -36,16 +38,15 @@ final class MainPiecesView: UIView {
     }
     
     private func setDelegate() {
-        mainPiecesCollectionView.dataSource = self
-        mainPiecesCollectionView.delegate = self
+        mainPiecesCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(MainPiecesCell.self, forCellWithReuseIdentifier: MainPiecesCell.identifier)
+        }
     }
     
     private func setData() {
         mainPiecesManager.makeMainPiecesData()
-    }
-    
-    private func register() {
-        mainPiecesCollectionView.register(MainPiecesCell.self, forCellWithReuseIdentifier: MainPiecesCell.identifier)
     }
 }
 

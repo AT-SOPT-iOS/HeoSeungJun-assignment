@@ -5,28 +5,28 @@ final class OtherPiecesView: UIView {
     
     private let otherPiecesManager = OtherPiecesManager()
     
-    private let otherPiecesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        return collectionView
-    }()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var otherPiecesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setStyle() {
+        flowLayout.scrollDirection = .horizontal
+        otherPiecesCollectionView.backgroundColor = .black
+    }
+    
     private func setLayout() {
-        addSubViews(otherPiecesCollectionView)
+        addSubviews(otherPiecesCollectionView)
         
         otherPiecesCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -37,16 +37,15 @@ final class OtherPiecesView: UIView {
     }
     
     private func setDelegate() {
-        otherPiecesCollectionView.dataSource = self
-        otherPiecesCollectionView.delegate = self
+        otherPiecesCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(OtherPiecesCell.self, forCellWithReuseIdentifier: OtherPiecesCell.identifier)
+        }
     }
     
     private func setData() {
         otherPiecesManager.makeOtherPiecesData()
-    }
-    
-    private func register() {
-        otherPiecesCollectionView.register(OtherPiecesCell.self, forCellWithReuseIdentifier: OtherPiecesCell.identifier)
     }
 }
 

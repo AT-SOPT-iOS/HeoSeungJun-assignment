@@ -5,28 +5,28 @@ final class BaseballTeamsView: UIView {
     
     private let baseballTeamsManager = BaseballTeamsManager()
     
-    private let baseballCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        return collectionView
-    }()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var baseballCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setStyle() {
+        flowLayout.scrollDirection = .horizontal
+        baseballCollectionView.backgroundColor = .black
+    }
+    
     private func setLayout() {
-        addSubViews(baseballCollectionView)
+        addSubviews(baseballCollectionView)
         
         baseballCollectionView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -37,16 +37,15 @@ final class BaseballTeamsView: UIView {
     }
     
     private func setDelegate() {
-        baseballCollectionView.dataSource = self
-        baseballCollectionView.delegate = self
+        baseballCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(BaseballTeamsCell.self, forCellWithReuseIdentifier: BaseballTeamsCell.identifier)
+        }
     }
     
     private func setData() {
         baseballTeamsManager.makeBaseballTeamsData()
-    }
-    
-    private func register() {
-        baseballCollectionView.register(BaseballTeamsCell.self, forCellWithReuseIdentifier: BaseballTeamsCell.identifier)
     }
 }
 

@@ -3,16 +3,12 @@ import SnapKit
 
 final class RealTimeMoviesCell: UICollectionViewCell {
     
-    private let pieceImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 3
-        return imageView
-    }()
+    private let pieceImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addView()
+        setStyle()
         setLayout()
     }
     
@@ -22,6 +18,13 @@ final class RealTimeMoviesCell: UICollectionViewCell {
     
     private func addView() {
         addSubview(pieceImageView)
+    }
+    
+    private func setStyle() {
+        pieceImageView.do {
+            $0.contentMode = .scaleAspectFit
+            $0.layer.cornerRadius = 3
+        }
     }
     
     private func setLayout() {
