@@ -12,14 +12,14 @@ final class LoginViewController: UIViewController {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.text = "TVING ID 로그인"
-        label.font = UIFont(name: "Pretendard-Bold", size: 23)
-        label.textColor = UIColor(red: 214, green: 214, blue: 214, alpha: 1)
+        label.font = UIFont.customBold(ofSize: 23)
+        label.textColor = UIColor.gray6
         return label
     }()
     
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
+        textField.backgroundColor = UIColor.gray2
         textField.font = UIFont(name: "Pretendard-Black", size: 15)
         textField.layer.cornerRadius = 3
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 52))
@@ -27,9 +27,9 @@ final class LoginViewController: UIViewController {
         textField.leftViewMode = .always
         textField.attributedPlaceholder = NSAttributedString(
             string: "아이디",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray5]
         )
-        textField.textColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)
+        textField.textColor = UIColor.gray5
         textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(textFieldTapped), for: .editingChanged)
         return textField
@@ -37,7 +37,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
+        textField.backgroundColor = UIColor.gray2
         textField.font = UIFont(name: "Pretendard-Black", size: 15)
         textField.layer.cornerRadius = 3
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 52))
@@ -45,9 +45,9 @@ final class LoginViewController: UIViewController {
         textField.leftViewMode = .always
         textField.attributedPlaceholder = NSAttributedString(
             string: "비밀번호",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray5]
         )
-        textField.textColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)
+        textField.textColor = UIColor.gray5
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(textFieldTapped), for: .editingChanged)
@@ -81,8 +81,8 @@ final class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-Black", size: 14)
-        button.titleLabel?.textColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)
+        button.titleLabel?.font = UIFont.customBlack(ofSize: 14)
+        button.titleLabel?.textColor = UIColor.gray5
         button.backgroundColor = .black
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1
@@ -92,25 +92,25 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private lazy var idFoundButton: UIButton = {
+    private let idFoundButton: UIButton = {
         let button = UIButton()
         button.setTitle("아이디 찾기", for: .normal)
-        button.setTitleColor(UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.gray5, for: .normal)
         return button
     }()
     
-    private lazy var verticalLine: UILabel = {
+    private let verticalLine: UILabel = {
         let label = UILabel()
         label.text = "|"
-        label.textColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1)
+        label.textColor = UIColor.gray5
         label.font = UIFont(name: "Pretendard-Bold", size: 14)
         return label
     }()
     
-    private lazy var passwordFoundButton: UIButton = {
+    private let passwordFoundButton: UIButton = {
         let button = UIButton()
         button.setTitle("비밀번호 찾기", for: .normal)
-        button.setTitleColor(UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.gray5, for: .normal)
         return button
     }()
     
@@ -121,17 +121,17 @@ final class LoginViewController: UIViewController {
         return view
     }()
     
-    private lazy var signUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("아직 계정이 없으신가요?", for: .normal)
-        button.setTitleColor(UIColor(red: 0.38, green: 0.38, blue: 0.38, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.gray3, for: .normal)
         return button
     }()
     
-    private lazy var makeNicknameButton: UIButton = {
+    private let makeNicknameButton: UIButton = {
         let button = UIButton()
         button.setTitle("닉네임 만들러가기", for: .normal)
-        button.setTitleColor(UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.gray5, for: .normal)
         button.setUnderline()
         button.addTarget(self, action: #selector(makeNicknameButtonTapped), for: .touchUpInside)
         return button
@@ -337,52 +337,5 @@ extension LoginViewController: UITextFieldDelegate {
         if textField == passwordTextField {
             passwordTextField.layer.borderWidth = 0
         }
-    }
-}
-
-extension UIImage {
-    func imageWithColor(color: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        color.setFill()
-
-        let context = UIGraphicsGetCurrentContext()
-        context?.translateBy(x: 0, y: self.size.height)
-        context?.scaleBy(x: 1.0, y: -1.0)
-        context?.setBlendMode(CGBlendMode.normal)
-
-        let rect = CGRect(origin: .zero, size: CGSize(width: self.size.width, height: self.size.height))
-        context?.clip(to: rect, mask: self.cgImage!)
-        context?.fill(rect)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage!
-    }
-}
-
-extension UIButton {
-    func setUnderline() {
-        guard let title = title(for: .normal) else { return }
-        let attributedString = NSMutableAttributedString(string: title)
-        attributedString.addAttribute(.underlineStyle,
-                                      value: NSUnderlineStyle.single.rawValue,
-                                      range: NSRange(location: 0, length: title.count)
-        )
-        setAttributedTitle(attributedString, for: .normal)
-    }
-}
-
-extension String {
-    var isValidEmail: Bool {
-        let regularExpression = "^[A-Z0-9a-z._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
-        return predicate.evaluate(with: self)
-    }
-    
-    var isValidPassword: Bool {
-        let regularExpression = "[A-Za-z0-9!_@$%^&+=]{8,20}"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
-        return predicate.evaluate(with: self)
     }
 }

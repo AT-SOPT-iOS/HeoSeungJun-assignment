@@ -1,8 +1,7 @@
 import UIKit
-import SnapKit
 
 extension UIView {
-    func addSubViews(_ subViews: UIView...) {
-        subViews.forEach { addSubview($0) }
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
     }
 }

@@ -5,45 +5,43 @@ final class RealTimeMoviesView: UIView {
     
     private let realTimeMoviesManager = RealTimeMoviesManager()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "실시간 인기 영화"
-        label.textColor = .white
-        label.font = UIFont(name: "Pretendard-Bold", size: 17)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private let viewMoreButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("더보기", for: .normal)
-        button.setTitleColor(.systemGray, for: .normal)
-        button.backgroundColor = .clear
-        return button
-    }()
-    
-    private let movieCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .black
-        return collectionView
-    }()
+    private let titleLabel = UILabel()
+    private let viewMoreButton = UIButton()
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var movieCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setStyle()
         setLayout()
         setDelegate()
         setData()
-        register()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setStyle() {
+        titleLabel.do {
+            $0.text = "실시간 인기 영화"
+            $0.textColor = .white
+            $0.font = UIFont.customBold(ofSize: 17)
+            $0.textAlignment = .left
+        }
+        
+        viewMoreButton.do {
+            $0.setTitle("더보기", for: .normal)
+            $0.setTitleColor(.systemGray, for: .normal)
+            $0.backgroundColor = .clear
+        }
+        
+        flowLayout.scrollDirection = .horizontal
+        movieCollectionView.backgroundColor = .black
+    }
+    
     private func setLayout() {
-        addSubViews(titleLabel, viewMoreButton, movieCollectionView)
+        addSubviews(titleLabel, viewMoreButton, movieCollectionView)
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
@@ -69,16 +67,15 @@ final class RealTimeMoviesView: UIView {
     }
     
     private func setDelegate() {
-        movieCollectionView.dataSource = self
-        movieCollectionView.delegate = self
+        movieCollectionView.do {
+            $0.dataSource = self
+            $0.delegate = self
+            $0.register(RealTimeMoviesCell.self, forCellWithReuseIdentifier: RealTimeMoviesCell.identifier)
+        }
     }
     
     private func setData() {
         realTimeMoviesManager.makeRealTimeMoviesData()
-    }
-    
-    private func register() {
-        movieCollectionView.register(RealTimeMoviesCell.self, forCellWithReuseIdentifier: RealTimeMoviesCell.identifier)
     }
 }
 
