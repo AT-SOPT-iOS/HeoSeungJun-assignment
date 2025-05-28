@@ -87,7 +87,3 @@ extension BoxofficeViewController {
         return boxofficeList.filter { Int($0.rank)! <= totalRank }
     }
 }
-
-#Preview(traits: .defaultLayout, body: {
-    BoxofficeViewController()
-})
