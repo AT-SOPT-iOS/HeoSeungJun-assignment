@@ -5,13 +5,13 @@ struct NewFooterView: View {
         VStack(alignment: .leading, spacing: 10) {
             ZStack {
                 Rectangle()
-                    .fill(.gray)
+                    .fill(Color.gray4)
                     .frame(height: 50)
                 
                 HStack {
                     Text("공지")
                         .font(.customLight(ofSize: 11))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.gray2)
                     
                     Text("티빙 계정 공유 정책 추가 안내")
                         .font(.customLight(ofSize: 11))
@@ -28,9 +28,9 @@ struct NewFooterView: View {
             }
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
             
-            Text("고객문의·이용약관·\n사업자정보·인재채용")
+            Text("고객문의 · 이용약관 ·\n사업자정보 · 인재채용")
                 .font(.customLight(ofSize: 11))
-                .foregroundStyle(.gray)
+                .foregroundStyle(Color.gray2)
                 .padding(.leading, 10)
         }
     }

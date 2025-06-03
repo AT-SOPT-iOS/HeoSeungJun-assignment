@@ -9,7 +9,7 @@ struct NewOtherPiecesView: View {
                 ForEach(0..<pieces.count, id: \.self) { index in
                     ZStack {
                         Rectangle()
-                            .fill(.gray)
+                            .fill(Color.gray5)
                             .frame(width: 90, height: 45)
                         
                         Image(pieces[index].image)

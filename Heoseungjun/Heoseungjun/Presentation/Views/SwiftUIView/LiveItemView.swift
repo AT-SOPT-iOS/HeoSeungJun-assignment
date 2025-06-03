@@ -23,11 +23,11 @@ struct LiveItemView: View {
 
                     Text(piece.name)
                         .font(.customLight(ofSize: 10))
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color.gray2)
 
                     Text(piece.viewerRating)
                         .font(.customLight(ofSize: 10))
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color.gray2)
                 }
             }
             .padding(.leading, 10)

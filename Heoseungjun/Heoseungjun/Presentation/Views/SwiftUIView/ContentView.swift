@@ -14,18 +14,21 @@ struct ContentView: View {
     private let footerView = NewFooterView()
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                headerView
-                menuView
-                mainPiecesView
-                topPiecesView
-                realTimeLivesView
-                realTimeMoviesView
-                baseballTeamsView
-                otherPiecesView
-                masterPiecesView
-                footerView
+        VStack {
+            headerView
+            menuView
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    mainPiecesView
+                    topPiecesView
+                    realTimeLivesView
+                    realTimeMoviesView
+                    baseballTeamsView
+                    otherPiecesView
+                    masterPiecesView
+                    footerView
+                }
             }
         }
         .background(.black)
