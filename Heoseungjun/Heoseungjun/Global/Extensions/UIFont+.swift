@@ -1,17 +1,5 @@
 import UIKit
 
-enum FontName: String {
-    case bold = "Pretendard-Bold"
-    case black = "Pretendard-Black"
-    case extraBold = "Pretendard-ExtraBold"
-    case extraLight = "Pretendard-ExtraLight"
-    case light = "Pretendard-Light"
-    case medium = "Pretendard-Medium"
-    case regular = "Pretendard-Regular"
-    case semiBold = "Pretendard-SemiBold"
-    case thin = "Pretendard-Thin"
-}
-
 extension UIFont {
     static func customBold(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: FontName.bold.rawValue, size: size)!
