@@ -6,15 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		18D5B7B42DE6F4A2001D41BB /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 18D5B7B32DE6F4A2001D41BB /* Then */; };
+		18D5B7B72DE6F4B2001D41BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 18D5B7B62DE6F4B2001D41BB /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		183E2EB72DB921C800889AA8 /* Heoseungjun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heoseungjun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		183E2EC92DB921C900889AA8 /* Exceptions for "Heoseungjun" folder in "Heoseungjun" target */ = {
+		18D5B7B12DE6F484001D41BB /* Exceptions for "Heoseungjun" folder in "Heoseungjun" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Global/Info.plist,
 			);
 			target = 183E2EB62DB921C800889AA8 /* Heoseungjun */;
 		};
@@ -24,7 +29,7 @@
 		183E2EB92DB921C800889AA8 /* Heoseungjun */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				183E2EC92DB921C900889AA8 /* Exceptions for "Heoseungjun" folder in "Heoseungjun" target */,
+				18D5B7B12DE6F484001D41BB /* Exceptions for "Heoseungjun" folder in "Heoseungjun" target */,
 			);
 			path = Heoseungjun;
 			sourceTree = "<group>";
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D5B7B42DE6F4A2001D41BB /* Then in Frameworks */,
+				18D5B7B72DE6F4B2001D41BB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = Heoseungjun;
 			packageProductDependencies = (
+				18D5B7B32DE6F4A2001D41BB /* Then */,
+				18D5B7B62DE6F4B2001D41BB /* SnapKit */,
 			);
 			productName = Heoseungjun;
 			productReference = 183E2EB72DB921C800889AA8 /* Heoseungjun.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = 183E2EAE2DB921C800889AA8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				18D5B7B22DE6F4A2001D41BB /* XCRemoteSwiftPackageReference "Then" */,
+				18D5B7B52DE6F4B2001D41BB /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 183E2EB82DB921C800889AA8 /* Products */;
 			projectDirPath = "";
@@ -147,10 +160,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z5J43V9D9J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Heoseungjun/Info.plist;
+				INFOPLIST_FILE = Heoseungjun/Global/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -175,10 +187,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z5J43V9D9J;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Heoseungjun/Info.plist;
+				INFOPLIST_FILE = Heoseungjun/Global/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +346,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18D5B7B22DE6F4A2001D41BB /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		18D5B7B52DE6F4B2001D41BB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18D5B7B32DE6F4A2001D41BB /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18D5B7B22DE6F4A2001D41BB /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		18D5B7B62DE6F4B2001D41BB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18D5B7B52DE6F4B2001D41BB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 183E2EAF2DB921C800889AA8 /* Project object */;
 }
