@@ -1,33 +1,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    private let headerView = NewHeaderView()
-    private let menuView = NewMenuView()
-    private let mainPiecesView = NewMainPiecesView()
-    private let topPiecesView = NewTopPiecesView()
-    private let realTimeLivesView = NewRealTimeLivesView()
-    private let realTimeMoviesView = NewRealTimeMoviesView()
-    private let baseballTeamsView = NewBaseballTeamsView()
-    private let otherPiecesView = NewOtherPiecesView()
-    private let masterPiecesView = NewMasterPiecesView()
-    private let footerView = NewFooterView()
+    @State var selectedMenuIndex: Int = 0
     
     var body: some View {
         VStack {
-            headerView
-            menuView
+            NewHeaderView()
+            NewMenuView(selectedIndex: $selectedMenuIndex)
             
-            ScrollView {
-                VStack(spacing: 20) {
-                    mainPiecesView
-                    topPiecesView
-                    realTimeLivesView
-                    realTimeMoviesView
-                    baseballTeamsView
-                    otherPiecesView
-                    masterPiecesView
-                    footerView
+            Group {
+                switch selectedMenuIndex {
+                case 0:
+                    HomeView()
+                case 1:
+                    DramaView()
+                case 2:
+                    EntertainmentView()
+                case 3:
+                    MovieView()
+                case 4:
+                    SportView()
+                case 5:
+                    NewsView()
+                default:
+                    Text("Other")
                 }
             }
         }
