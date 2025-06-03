@@ -10,6 +10,7 @@ struct NewMenuView: View {
                 makeMenu(menus[index], isSelected: index == selectedIndex)
                     .onTapGesture {
                         selectedIndex = index
+                        //self.font = .customSemiBold(ofSize: 17)
                     }
             }
         }
@@ -20,6 +21,6 @@ struct NewMenuView: View {
     private func makeMenu(_ title: String, isSelected: Bool) -> some View {
         return Text(title)
             .foregroundStyle(.white)
-            .font(.customBlack(ofSize: 17))
+            .font(isSelected ? .customBlack(ofSize: 17) : .customSemiBold(ofSize: 17))
     }
 }
